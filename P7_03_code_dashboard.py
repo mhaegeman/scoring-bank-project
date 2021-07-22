@@ -189,17 +189,10 @@ la connaissance client des chargés de relation client.
 col1, col2, col3 = st.beta_columns([5,1,10]) # crée 3 colonnes
 with col1:
     st.write("### Merci d'entrer un identifiant client :")
-    identifiant = st.number_input(' ', min_value=100002, max_value=456255)
+    identifiant = st.number_input(' ', min_value=100001, max_value=112188)
 
 with st.spinner('Import des données'):
-    df_1 = pd.read_csv("df_0.csv.zip", compression='zip')
-    #df_2 = pd.read_csv("df_72892.csv.zip", compression='zip')
-    #df_3 = pd.read_csv("df_145784.csv.zip", compression='zip')
-    df_4 = pd.read_csv("df_218676.csv.zip", compression='zip')
-    #fichier trop lours : on diminue le nombre de clients
-    df = pd.concat([df_1, #df_2,df_3,
-                    df_4],
-                    ignore_index=True)
+    df = pd.read_csv("data_api.csv")
 
     df_int = pd.read_csv('df_interprete')
 
