@@ -193,10 +193,12 @@ with col1:
 
 with st.spinner('Import des données'):
     df_1 = pd.read_csv("df_0.csv.zip", compression='zip')
-    df_2 = pd.read_csv("df_72892.csv.zip", compression='zip')
+    #df_2 = pd.read_csv("df_72892.csv.zip", compression='zip')
     df_3 = pd.read_csv("df_145784.csv.zip", compression='zip')
     df_4 = pd.read_csv("df_218676.csv.zip", compression='zip')
-    df = pd.concat([df_1, df_2, df_3, df_4],
+    #fichier trop lours : on diminue le nombre de clients
+    df = pd.concat([df_1, #df_2,
+                    df_3, df_4],
                     ignore_index=True)
 
     df_int = pd.read_csv('df_interprete')
