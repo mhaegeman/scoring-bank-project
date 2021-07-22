@@ -192,23 +192,11 @@ with col1:
     identifiant = st.number_input(' ', min_value=100002, max_value=456255)
 
 with st.spinner('Import des données'):
-    df_1 = pd.read_csv("df_1")
-    df_2 = pd.read_csv("df_2")
-    df_3 = pd.read_csv("df_3")
-    df_4 = pd.read_csv("df_4")
-    df_5 = pd.read_csv("df_5")
-    df_6 = pd.read_csv("df_6")
-    df_7 = pd.read_csv("df_7")
-    df_8 = pd.read_csv("df_8")
-    df_9 = pd.read_csv("df_9")
-    df_10 = pd.read_csv("df_10")
-    df_11 = pd.read_csv("df_11")
-    df_12 = pd.read_csv("df_12")
-    df_13 = pd.read_csv("df_13")
-    df_14 = pd.read_csv("df_14")
-    df_15 = pd.read_csv("df_15")
-    df = pd.concat([df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8,
-                    df_9, df_10, df_11, df_12, df_13, df_14, df_15],
+    df_1 = pd.read_csv("df_0.csv.zip", compression='zip')
+    df_2 = pd.read_csv("df_72892.csv.zip", compression='zip')
+    df_3 = pd.read_csv("df_145784.csv.zip", compression='zip')
+    df_4 = pd.read_csv("df_218676.csv.zip", compression='zip')
+    df = pd.concat([df_1, df_2, df_3, df_4],
                     ignore_index=True)
 
     df_int = pd.read_csv('df_interprete')
