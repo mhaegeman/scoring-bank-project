@@ -195,6 +195,7 @@ with st.spinner('Import des données'):
     df = pd.read_csv("data_api.csv")
 
     df_int = pd.read_csv('df_interprete')
+    df_int.drop('Unnamed: 0', axis=1, inplace=True)
 
     df_group = pd.read_csv('df_group')
 
