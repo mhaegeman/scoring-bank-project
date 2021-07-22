@@ -235,7 +235,6 @@ with st.spinner('Import des modèles'):
 
     # import du dataframe nettoyé pour le NearestNeighbors
     df_nn = pd.read_csv('df_nn')
-    df_nn.drop('Unnamed: 0', axis=1, inplace=True)
     
 
     # import du Standard Scaler entrainé pour le NearestNeighbors
