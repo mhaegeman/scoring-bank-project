@@ -85,11 +85,6 @@ def grab_col_names(dataframe, cat_th=10, car_th=20, show_date=False):
     print(f'cat_but_car: {len(cat_but_car)}')
     print(f'num_but_cat: {len(num_but_cat)}')
 
-    # cat_cols + num_cols + cat_but_car = değişken sayısı.
-    # num_but_cat cat_cols'un içerisinde zaten.
-    # dolayısıyla tüm şu 3 liste ile tüm değişkenler seçilmiş olacaktır: cat_cols + num_cols + cat_but_car
-    # num_but_cat sadece raporlama için verilmiştir.
-
     if show_date == True:
         return date_cols, cat_cols, cat_but_car, num_cols, num_but_cat
     else:
