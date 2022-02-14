@@ -9,8 +9,8 @@ https://www.kaggle.com/ekrembayar/homecredit-default-risk-step-by-step-1st-noteb
 
 ## 2. Dashboard interactif : 
 
-- app_dashboard_streamlit.py : code du dashboard, avec Streamlit.
-- notebook_test_API.ipynb : fichier contenant les tests pour l'application, et la création de tables supplémentaires.
+- dashboard_app_streamlit.py : code du dashboard, avec Streamlit.
+- notebook_prep_API.ipynb : fichier contenant les tests pour l'application, et la création de tables supplémentaires.
 
 
 
