@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/python
 mkdir -p ~/.streamlit/
 echo "\
 [server]\n\
