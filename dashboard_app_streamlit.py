@@ -113,22 +113,22 @@ def radar_chart(client, param):
         ok, impayes, cat = ok_impayes(df, 'CODE_GENDER')
         client = pd.concat([client, ok, impayes], ignore_index=True)
 
-    if param == "Type d'entreprise":
+    elif param == "Type d'entreprise":
         df = organization_type.copy()
         ok, impayes, cat = ok_impayes(df, 'ORGANIZATION_TYPE')
         client = pd.concat([client, ok, impayes], ignore_index=True)
 
-    if param == "Niveau d'éducation":
+    elif param == "Niveau d'éducation":
         df = education_type.copy()
         ok, impayes, cat = ok_impayes(df, 'NAME_EDUCATION_TYPE')
         client = pd.concat([client, ok, impayes], ignore_index=True)
 
-    if param == "Niveau de revenus":
+    elif param == "Niveau de revenus":
         df = income.copy()
         ok, impayes, cat = ok_impayes(df, 'AMT_INCOME')
         client = pd.concat([client, ok, impayes], ignore_index=True)
 
-    if param == 'Statut marital':
+    elif param == 'Statut marital':
         df = family.copy()
         ok, impayes, cat = ok_impayes(df, 'NAME_FAMILY_STATUS')
         client = pd.concat([client, ok, impayes], ignore_index=True)
@@ -317,25 +317,25 @@ with st.spinner('Calcul en cours'):
 
                     bar_plot(genre, 'CODE_GENDER')
 
-                if param == "Type d'entreprise":
+                elif param == "Type d'entreprise":
                     cat = df_group[df_group['SK_ID_CURR'] == identifiant]['ORGANIZATION_TYPE'].iloc[0]
                     st.write("Type d'entreprise du client : " + cat)
 
                     bar_plot(organization_type, 'ORGANIZATION_TYPE')
 
-                if param == "Niveau d'éducation":
+                elif param == "Niveau d'éducation":
                     cat = df_group[df_group['SK_ID_CURR'] == identifiant]['NAME_EDUCATION_TYPE'].iloc[0]
                     st.write("Niveau d'éducation du client : " + cat)
 
                     bar_plot(education_type, 'NAME_EDUCATION_TYPE')
 
-                if param == "Niveau de revenus":
+                elif param == "Niveau de revenus":
                     cat = df_group[df_group['SK_ID_CURR'] == identifiant]['AMT_INCOME'].iloc[0]
                     st.write("Le client a des revenus situés " + cat)
 
                     bar_plot(income, 'AMT_INCOME')
 
-                if param == "Statut marital":
+                elif param == "Statut marital":
                     cat = df_group[df_group['SK_ID_CURR'] == identifiant]['NAME_FAMILY_STATUS'].iloc[0]
                     st.write("Statut marital du client : " + cat)
 
