@@ -300,7 +300,7 @@ with st.spinner('Calcul en cours'):
                      "le client à un groupe suivant un paramètre choisi")
 
         with st.expander("Afficher les graphes"):
-            col1_1, col2_1, col3_1 = st.beta_columns([10, 1, 10])  # crée 3 colonnes
+            col1_1, col2_1, col3_1 = st.columns([10, 1, 10])  # crée 3 colonnes
             with col1_1:
                 param = st.selectbox(label=" Veuillez choisir le paramètre à comparer : ",
                                      options=('Genre',
