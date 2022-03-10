@@ -297,7 +297,7 @@ with st.spinner('Calcul en cours'):
             st.write(voisins_int)
 
         st.write("## Graphiques interactifs de comparaison "
-                     "entre le client et un groupe suivant un paramètre choisi")
+                     "entre le client et un groupe d'individus similaires")
 
         with st.expander("Afficher les graphiques"):
             col1_1, col2_1, col3_1 = st.columns([10, 1, 10])  # crée 3 colonnes
