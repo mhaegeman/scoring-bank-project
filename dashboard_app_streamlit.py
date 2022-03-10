@@ -178,17 +178,17 @@ def bar_plot(df, col):
 
 
 st.set_page_config(layout='wide',
-                   page_title="Interactive Dashboard for a Loan Acceptance")
+                   page_title="Application d'acceptation de crédit")
 st.write("""
-# Interactive Dashboard for a Loan Acceptance
+# Application d'acceptation de crédit
 """)
 
 col1, col2, col3 = st.columns([5,1,10]) # crée 3 colonnes
 with col1:
-    st.write("### Please enter a client number :")
+    st.write("### Renseignez le numéro client :")
     identifiant = st.number_input(' ', min_value=100001, max_value=112188)
 
-with st.spinner('Import data'):
+with st.spinner('Import des données'):
     df = pd.read_csv("data_api.csv")
 
     df_int = pd.read_csv('df_interprete')
@@ -220,7 +220,7 @@ interpretable_important_data_target = ['SK_ID_CURR',
                                        'ANNUITY_INCOME_PERC',
                                        'TARGET']
 
-with st.spinner('Import models'):
+with st.spinner('Import des modèles'):
     # import du modèle lgbm entrainé
     infile = open('LightGBMModel.pkl', 'rb')
     lgbm = pickle.load(infile)
@@ -250,7 +250,7 @@ with st.spinner('Calcul en cours'):
         df_client_int.set_index('Identifiant', inplace=True)
         # on affiche notre client
         with col3:
-            st.write('## Informations client',
+            st.write('## Informations du client',
                      df_client_int.drop('Défaut paiement', axis=1))
 
         with col1:
@@ -268,7 +268,7 @@ with st.spinner('Calcul en cours'):
         def_p = "Le client a déjà été en défaut de paiement : " + str(df_client_int['Défaut paiement'].iloc[0])
         if proba < 0.5:
             with col1:
-                st.markdown("Résultat : :white_check_mark: **Faible risque d'impayés** ")
+                st.markdown("Résultat : :white_check_mark: **Client présente un faible risque d'impayés** ")
                 st.write('>', def_p)
                 st.write(" ")
         else:
@@ -286,7 +286,7 @@ with st.spinner('Calcul en cours'):
         for v in range(len(voisins)):
             voisins_table[v] = df_nn.iloc[voisins[v]]
         with col3:
-            st.write("## Profils de clients similaires ")
+            st.write("## Profils de clients similaires en base")
             voisins_int = pd.DataFrame(index=range(len(voisins_table.transpose())),
                                        columns=df_int.columns)
             i = 0
@@ -296,13 +296,13 @@ with st.spinner('Calcul en cours'):
             voisins_int.set_index('Identifiant', inplace=True)
             st.write(voisins_int)
 
-        st.write("## Graphes interactifs permettant de comparer "
-                     "le client à un groupe suivant un paramètre choisi")
+        st.write("## Graphiques interactifs de comparaison "
+                     "entre le client et un groupe suivant un paramètre choisi")
 
-        with st.expander("Afficher les graphes"):
+        with st.expander("Afficher les graphiques"):
             col1_1, col2_1, col3_1 = st.columns([10, 1, 10])  # crée 3 colonnes
             with col1_1:
-                param = st.selectbox(label=" Veuillez choisir le paramètre à comparer : ",
+                param = st.selectbox(label=" Choisissez le paramètre à comparer : ",
                                      options=('Genre',
                                               "Type d'entreprise",
                                               "Niveau d'éducation",
