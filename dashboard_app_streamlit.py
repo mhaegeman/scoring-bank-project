@@ -219,9 +219,9 @@ interpretable_important_data_target = ['SK_ID_CURR',
                                        'ANNUITY_INCOME_PERC',
                                        'TARGET']
 
-x_test = interpretable_important_data.drop('SK_ID_CURR', axis=1)
-y_test = interpretable_important_data_target['TARGET']
-class_names = interpretable_important_data.columns
+x_test = df[interpretable_important_data].drop('SK_ID_CURR', axis=1)
+y_test = df['TARGET']
+class_names = interpretable_important_data
 
 with st.spinner('Import des modèles'):
     # import du modèle lgbm entrainé
