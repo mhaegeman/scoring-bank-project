@@ -261,6 +261,8 @@ def plot_metrics(metrics_list):
         plot_precision_recall_curve(lgbm, x_test, y_test)
         st.pyplot()
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 with st.spinner('Calcul en cours'):
     if (df['SK_ID_CURR'] == identifiant).sum() == 0:
         st.write("Identifiant client inconnu")
