@@ -219,10 +219,10 @@ interpretable_important_data_target = ['SK_ID_CURR',
                                        'ANNUITY_INCOME_PERC',
                                        'TARGET']
 
-df_notnan = df.dropna(inplace=True)
+df.dropna(inplace=True)
 
-x_test = df_notnan.drop(['SK_ID_CURR','TARGET'], axis=1)
-y_test = df_notnan['TARGET']
+x_test = df.drop(['SK_ID_CURR','TARGET'], axis=1)
+y_test = df['TARGET']
 class_names = interpretable_important_data
 
 with st.spinner('Import des modèles'):
