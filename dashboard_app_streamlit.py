@@ -248,7 +248,7 @@ with st.spinner('Import des modèles'):
 def plot_metrics(metrics_list):
     if 'Confusion Matrix' in metrics_list:
         st.subheader("Confusion Matrix") 
-        plot_confusion_matrix(lgbm, x_test, y_test, display_labels=class_names)
+        plot_confusion_matrix(lgbm, x_test, y_test)
         st.pyplot()
     
     if 'ROC Curve' in metrics_list:
