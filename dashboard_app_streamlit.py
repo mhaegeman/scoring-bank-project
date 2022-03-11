@@ -219,7 +219,7 @@ interpretable_important_data_target = ['SK_ID_CURR',
                                        'ANNUITY_INCOME_PERC',
                                        'TARGET']
 
-df.dropna(inplace=True)
+df.dropna(subset=interpretable_important_data_target, inplace=True)
 
 x_test = df.drop(['SK_ID_CURR','TARGET'], axis=1)
 y_test = df['TARGET']
