@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 import plotly.express as px
-
+from sklearn.metrics import plot_confusion_matrix, plot_roc_curve, plot_precision_recall_curve
 
 def radar_chart(client, param):
     """Fonction qui trace le graphe radar du client comparé aux crédits accordés/refusés
@@ -204,7 +204,6 @@ with st.spinner('Import des données'):
     organization_type = pd.read_csv('organization_type')
     family = pd.read_csv('family')
 
-
 interpretable_important_data = ['SK_ID_CURR',
                                 'PAYMENT_RATE',
                                 'AMT_ANNUITY',
@@ -219,6 +218,10 @@ interpretable_important_data_target = ['SK_ID_CURR',
                                        'DAYS_EMPLOYED',
                                        'ANNUITY_INCOME_PERC',
                                        'TARGET']
+
+x_test = interpretable_important_data.drop('SK_ID_CURR', axis=1)
+y_test = interpretable_important_data_target['TARGET']
+class_names = interpretable_important_data.columns
 
 with st.spinner('Import des modèles'):
     # import du modèle lgbm entrainé
@@ -239,6 +242,22 @@ with st.spinner('Import des modèles'):
     infile = open('StandardScaler.pkl', 'rb')
     std = pickle.load(infile)
     infile.close()
+
+def plot_metrics(metrics_list):
+    if 'Confusion Matrix' in metrics_list:
+        st.subheader("Confusion Matrix") 
+        plot_confusion_matrix(lgbm, x_test, y_test, display_labels=class_names)
+        st.pyplot()
+    
+    if 'ROC Curve' in metrics_list:
+        st.subheader("ROC Curve") 
+        plot_roc_curve(lgbm, x_test, y_test)
+        st.pyplot()
+
+    if 'Precision-Recall Curve' in metrics_list:
+        st.subheader("Precision-Recall Curve")
+        plot_precision_recall_curve(lgbm, x_test, y_test)
+        st.pyplot()
 
 with st.spinner('Calcul en cours'):
     if (df['SK_ID_CURR'] == identifiant).sum() == 0:
@@ -295,13 +314,26 @@ with st.spinner('Calcul en cours'):
                 i += 1
             voisins_int.set_index('Identifiant', inplace=True)
             st.write(voisins_int)
+        
+        st.write("## Métriques d'entrainement du modèle ")  
+
+        with st.expander("Afficher les métriques"):
+            col1_1, col2_1, col3_1 = st.columns([10, 1, 10])  # crée 3 colonnes
+            with col1_1:
+                metrics = st.selectbox(label=" Choisissez la métrique à voir : ",
+                                     options=('Confusion Matrix', 
+                                                'ROC Curve', 
+                                                'Precision-Recall Curve'))
+            
+            with col3_1:
+                plot_metrics(metrics)
 
         st.write("## Graphiques interactifs de comparaison "
                      "entre le client et un groupe d'individus similaires")
 
         with st.expander("Afficher les graphiques"):
-            col1_1, col2_1, col3_1 = st.columns([10, 1, 10])  # crée 3 colonnes
-            with col1_1:
+            col1_2, col2_2, col3_2 = st.columns([10, 1, 10])  # crée 3 colonnes
+            with col1_2:
                 param = st.selectbox(label=" Choisissez le paramètre à comparer : ",
                                      options=('Genre',
                                               "Type d'entreprise",
@@ -341,9 +373,10 @@ with st.spinner('Calcul en cours'):
 
                     bar_plot(family, 'NAME_FAMILY_STATUS')
 
-            with col3_1:
+            with col3_2:
                 st.write(f"Graphe radar comparant notre client aux clients du même {str.lower(param)}")
                 # création du graphe radar
                 radar_chart(df_client_int_SU.drop('Identifiant', axis=1), param)
-                
+
+
         
