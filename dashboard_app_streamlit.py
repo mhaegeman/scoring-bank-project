@@ -186,7 +186,7 @@ st.write("""
 col1, col2, col3 = st.columns([5,1,10]) # crée 3 colonnes
 with col1:
     st.write("### Renseignez le numéro client :")
-    identifiant = st.number_input(' ', min_value=100001, max_value=112188)
+    identifiant = st.number_input(' ', min_value=100002, max_value=112188)
 
 with st.spinner('Import des données'):
     df = pd.read_csv("data_api.csv")
