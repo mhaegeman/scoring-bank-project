@@ -185,6 +185,11 @@ st.write("""
 """)
 
 col1, col2, col3 = st.columns([5,1,10]) # crée 3 colonnes
+
+with col1:
+            st.write("### Seuil d'acceptation de crédit")
+            seuil = st.slider("Choisissez la probabilité d'impayés acceptée :", min_value=0.00, max_value=1.00, value=0.50, step=0.01)
+
 with col1:
     st.write("### Renseignez le numéro client :")
     identifiant = st.number_input(' ', min_value=100002, max_value=112188)
@@ -276,10 +281,7 @@ with st.spinner('Calcul en cours'):
         with col3:
             st.write('## Informations du client',
                      df_client_int.drop('Défaut paiement', axis=1))
-        with col1:
-            st.write("### Seuil d'acceptation de crédit")
-            seuil = st.slider("Choisissez le seuil :", min_value=0.00, max_value=1.00, value=0.50, step=0.01)
-
+        
         with col1:
             feats = [f for f in df_client.columns if f not in ['SK_ID_CURR', 'TARGET']]
             results = pd.DataFrame(lgbm.predict_proba(df_client[feats]),
