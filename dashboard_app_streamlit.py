@@ -322,14 +322,14 @@ with st.spinner('Calcul en cours'):
         st.write("## Métriques d'entrainement du modèle ")  
 
         with st.expander("Afficher les métriques"):
-            col1_1, col2_1, col3_1 = st.columns([10, 1, 5])  # crée 3 colonnes
+            col1_1, col2_1, col3_1 = st.columns([5, 1, 8])  # crée 3 colonnes
             with col1_1:
                 metrics = st.selectbox(label=" Choisissez la métrique à voir : ",
                                      options=('Confusion Matrix', 
                                                 'ROC Curve', 
                                                 'Precision-Recall Curve'))
             
-            with col2_1:
+            with col3_1:
                 plot_metrics(metrics)
 
         st.write("## Graphiques interactifs de comparaison "
