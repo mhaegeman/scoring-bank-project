@@ -329,7 +329,7 @@ with st.spinner('Calcul en cours'):
                                                 'ROC Curve', 
                                                 'Precision-Recall Curve'))
             
-            with col3_1:
+            with col2_1:
                 plot_metrics(metrics)
 
         st.write("## Graphiques interactifs de comparaison "
