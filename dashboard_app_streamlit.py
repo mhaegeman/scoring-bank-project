@@ -67,7 +67,7 @@ def radar_chart(client, param):
                 ax.set_rgrids(grid, labels=gridlabel, angle=angles[i])
                 # ax.spines["polar"].set_visible(False)
                 ax.set_ylim(*ranges[i])
-                
+
 
             ticks = angles
             ax.set_xticks(np.deg2rad(ticks))  # crée les axes suivant les angles, en radians
@@ -288,7 +288,7 @@ with st.spinner('Calcul en cours'):
             st.write("## Prédiction",
                      results["Probabilité d'impayés"])
 
-        seuil = st.slider("Choisissez le seuil d'acceptation", 0, 1, 0.5)
+        seuil = st.slider("Choisissez le seuil d'acceptation", min_value=0, max_value=1, value=0.5, step=0.01)
 
         proba = results["Probabilité d'impayés"].iloc[0]
         def_p = "Le client a déjà été en défaut de paiement : " + str(df_client_int['Défaut paiement'].iloc[0])
