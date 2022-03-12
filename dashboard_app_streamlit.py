@@ -276,6 +276,9 @@ with st.spinner('Calcul en cours'):
         with col3:
             st.write('## Informations du client',
                      df_client_int.drop('Défaut paiement', axis=1))
+        with col1:
+            st.write("### Seuil d'acceptation de crédit")
+            seuil = st.slider("Choisissez le seuil :", min_value=0.00, max_value=1.00, value=0.50, step=0.01)
 
         with col1:
             feats = [f for f in df_client.columns if f not in ['SK_ID_CURR', 'TARGET']]
@@ -287,9 +290,7 @@ with st.spinner('Calcul en cours'):
 
             st.write("## Prédiction",
                      results["Probabilité d'impayés"])
-
-        seuil = st.slider("Choisissez le seuil d'acceptation", min_value=0.00, max_value=1.00, value=0.50, step=0.01)
-
+        
         proba = results["Probabilité d'impayés"].iloc[0]
         def_p = "Le client a déjà été en défaut de paiement : " + str(df_client_int['Défaut paiement'].iloc[0])
         if proba < seuil:
