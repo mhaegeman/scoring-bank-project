@@ -5,9 +5,9 @@ Welcome to the Bank Scoring Dashboard project repository! This project offers an
 The main goal of this project is to implement a credit scoring tool to evaluate the likelihood of a client repaying their loan. Additionally, we aim to develop an interactive dashboard dedicated to customer relationship management, providing bank advisors with valuable insights into clients' financial situations.
 
 ## Key Features
-- *Credit Scoring Tool*: This tool calculates the probability of a client repaying their loan based on their financial data.
+- **Credit Scoring Tool**: This tool calculates the probability of a client repaying their loan based on their financial data.
 - *Interactive Dashboard*: An intuitive dashboard that allows bank advisors to visualize clients' financial data, thereby enhancing customer relationships.
-- *Model Interpretability*: The project ensures that the model's predictions are understandable and easy to communicate, assisting bank advisors in their decision-making process.
+- **Model Interpretability**: The project ensures that the model's predictions are understandable and easy to communicate, assisting bank advisors in their decision-making process.
 
 
 ## Challenges
@@ -21,29 +21,29 @@ The project addresses the following challenges:
 ## Approach
 The project follows a three-step approach:
 
-1. *Data Import and EDA (Exploratory Data Analysis)* for each dataset:
+1. **Data Import and EDA (Exploratory Data Analysis)** for each dataset:
 - Handling missing values
 - Analyzing correlations
 - Performing feature engineering
 
-2. *Training and Evaluation of the LGBMClassifier model*:
+2. **Training and Evaluation of the LGBMClassifier model**:
 - Simple training
 - OverSampling
 - UnderSampling
 - Custom metrics with threshold
 
-3. *Model Interpretability*:
+3. **Model Interpretability**:
 - Feature importance
 - Selection of important variables for the dashboard
 
 ## Project Structure
 The project is organized into two main parts: the scoring model and the interactive dashboard. The project files are as follows:
 
-1. *Scoring Model Code*
+1. **Scoring Model Code**
 - `functions.py`: Main functions used in the notebook
-- `notebook_scoring.ipynb`: A notebook for exploration and modeling, including preprocessing steps adapted from an existing Kaggle kernel, which can be found [here](https://www.kaggle.com/code/ekrembayar/homecredit-default-risk-step-by-step-1st-notebook/notebook)
+- `notebook_scoring.ipynb`: A notebook for exploration and modeling, including preprocessing steps adapted from an existing Kaggle kernel, which can be found **[here](https://www.kaggle.com/code/ekrembayar/homecredit-default-risk-step-by-step-1st-notebook/notebook)**
 
-2. *Interactive Dashboard*
+2. **Interactive Dashboard**
 - `dashboard_app_streamlit.py`: The code for the dashboard, developed with Streamlit
 - `notebook_prep_API.ipynb`: A file containing tests for the application and the creation of additional tables
 
