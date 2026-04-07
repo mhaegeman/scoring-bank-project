@@ -1,6 +1,5 @@
 """Unit tests for scoring_bank.models.scorer."""
 
-import pickle
 from pathlib import Path
 from unittest.mock import MagicMock
 

@@ -9,9 +9,10 @@ import logging
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
-from sklearn.metrics import confusion_matrix, roc_curve, precision_recall_curve
+from sklearn.metrics import confusion_matrix, precision_recall_curve, roc_curve
 
 from scoring_bank import config
+from scoring_bank.dashboard.visualizations import bar_plot, radar_chart
 from scoring_bank.data.loader import (
     load_api_data,
     load_group_data,
@@ -19,7 +20,6 @@ from scoring_bank.data.loader import (
     load_nn_data,
     load_segment_data,
 )
-from scoring_bank.dashboard.visualizations import bar_plot, radar_chart
 from scoring_bank.models.scorer import load_model, predict_default_proba
 from scoring_bank.models.similarity import find_similar_clients, load_nn_model, load_scaler
 
@@ -166,6 +166,7 @@ else:
                 cm = confusion_matrix(y_test, y_pred)
                 fig, ax = plt.subplots(figsize=(6, 4))
                 import seaborn as sns
+
                 sns.heatmap(cm, annot=True, fmt="d", cmap="YlGnBu", ax=ax)
                 ax.set_ylabel("True label")
                 ax.set_xlabel("Predicted label")
@@ -228,15 +229,33 @@ else:
             st.write(f"Radar chart: client vs {param.lower()} peers")
 
             # Build client row and group averages for radar chart
-            radar_cols_fr = ["Durée emprunt", "Annuités", "Âge", "Début contrat travail", "Annuités/revenus"]
+            radar_cols_fr = [
+                "Durée emprunt",
+                "Annuités",
+                "Âge",
+                "Début contrat travail",
+                "Annuités/revenus",
+            ]
             if all(c in df_client_int_no_unit.columns for c in radar_cols_fr):
                 client_radar = df_client_int_no_unit.drop("Identifiant", axis=1, errors="ignore")
 
                 if not client_cat_row.empty and col_name in client_cat_row.columns:
                     cat = client_cat_row[col_name].iloc[0]
-                    seg_with_col = seg_df[seg_df[col_name] == cat] if col_name in seg_df.columns else pd.DataFrame()
-                    ok_rows = seg_with_col[seg_with_col["Cible"] == 0] if "Cible" in seg_with_col.columns else pd.DataFrame()
-                    bad_rows = seg_with_col[seg_with_col["Cible"] == 1] if "Cible" in seg_with_col.columns else pd.DataFrame()
+                    seg_with_col = (
+                        seg_df[seg_df[col_name] == cat]
+                        if col_name in seg_df.columns
+                        else pd.DataFrame()
+                    )
+                    ok_rows = (
+                        seg_with_col[seg_with_col["Cible"] == 0]
+                        if "Cible" in seg_with_col.columns
+                        else pd.DataFrame()
+                    )
+                    bad_rows = (
+                        seg_with_col[seg_with_col["Cible"] == 1]
+                        if "Cible" in seg_with_col.columns
+                        else pd.DataFrame()
+                    )
 
                     radar_data_cols = [c for c in radar_cols_fr if c in seg_df.columns]
                     if not ok_rows.empty and not bad_rows.empty and radar_data_cols:

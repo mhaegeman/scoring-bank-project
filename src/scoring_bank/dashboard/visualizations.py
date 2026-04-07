@@ -1,13 +1,10 @@
 """Dashboard visualisation helpers: radar charts and bar plots."""
 
-from typing import Optional
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-
 
 # ---------------------------------------------------------------------------
 # Radar chart
@@ -138,9 +135,7 @@ def radar_chart(
             min(client_row.iloc[0][v], ok_group.iloc[0][v], impayes_group.iloc[0][v]) - delta,
             max(client_row.iloc[0][v], ok_group.iloc[0][v], impayes_group.iloc[0][v]) + delta,
         )
-        for v, delta in zip(
-            variables, [5, 5000, 5, 1, 5]
-        )
+        for v, delta in zip(variables, [5, 5000, 5, 1, 5])
     ]
 
     fig = plt.figure(figsize=(6, 6))

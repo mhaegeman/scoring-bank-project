@@ -2,7 +2,6 @@
 
 import numpy as np
 import pandas as pd
-import pytest
 
 from scoring_bank.features.engineering import (
     grab_col_names,

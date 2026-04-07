@@ -32,10 +32,10 @@ jobs:
         run: pip install -e . --no-deps
 
       - name: Lint with ruff
-        run: ruff check src/ tests/
+        run: ruff check src/scoring_bank/ tests/
 
       - name: Format check with black
-        run: black --check src/ tests/
+        run: black --check src/scoring_bank/ tests/
 
       - name: Run tests with coverage
         run: pytest tests/ --cov=src/scoring_bank --cov-report=term-missing --cov-fail-under=60

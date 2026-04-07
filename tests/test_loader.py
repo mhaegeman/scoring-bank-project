@@ -16,6 +16,7 @@ class TestLoadApiData:
     def test_drops_rows_with_missing_key_features(self, tmp_path: Path) -> None:
         """Rows missing any INTERPRETABLE_FEATURES+TARGET should be dropped."""
         import numpy as np
+
         from scoring_bank import config
 
         cols = config.INTERPRETABLE_FEATURES + ["TARGET"]

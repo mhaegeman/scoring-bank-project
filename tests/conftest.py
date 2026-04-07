@@ -1,14 +1,12 @@
 """Shared pytest fixtures for the scoring_bank test suite."""
 
 import pickle
-import tempfile
 from pathlib import Path
 from unittest.mock import MagicMock
 
 import numpy as np
 import pandas as pd
 import pytest
-
 
 # ---------------------------------------------------------------------------
 # Sample DataFrames

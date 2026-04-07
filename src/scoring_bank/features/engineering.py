@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from lightgbm import LGBMClassifier
 from sklearn.metrics import (
     average_precision_score,
     classification_report,
@@ -92,7 +91,9 @@ def reduce_mem_usage(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def one_hot_encoder(df: pd.DataFrame, nan_as_category: bool = True) -> tuple[pd.DataFrame, list[str]]:
+def one_hot_encoder(
+    df: pd.DataFrame, nan_as_category: bool = True
+) -> tuple[pd.DataFrame, list[str]]:
     """One-hot encode all categorical / object columns.
 
     Args:
