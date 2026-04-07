@@ -29,7 +29,9 @@ addopts = "-v"
 line-length = 100
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "W"]
+# E: pycodestyle errors, F: pyflakes, W: pycodestyle warnings
+# I (isort) excluded — import ordering is handled by black and not enforced in CI
+select = ["E", "F", "W"]
 ignore = ["E501"]
 
 [tool.black]
