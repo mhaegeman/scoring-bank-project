@@ -25,6 +25,10 @@ where = ["src"]
 testpaths = ["tests"]
 addopts = "-v"
 
+[tool.coverage.run]
+# Streamlit dashboard cannot be unit-tested without a running browser/server
+omit = ["src/scoring_bank/dashboard/*"]
+
 [tool.ruff]
 line-length = 100
 
