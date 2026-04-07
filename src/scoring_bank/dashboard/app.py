@@ -132,13 +132,14 @@ else:
         st.dataframe(df_client_int.drop("Défaut paiement", axis=1, errors="ignore"))
 
     # --- Similar clients ---
-    interp_features_no_id = [c for c in config.INTERPRETABLE_FEATURES if c != "SK_ID_CURR"]
+    # The pre-trained StandardScaler and NearestNeighbors were fitted with all 6
+    # INTERPRETABLE_FEATURES including SK_ID_CURR, so we must pass all 6 here.
     similar = find_similar_clients(
         nn,
         scaler,
         df_client,
         df_nn,
-        interp_features_no_id,
+        config.INTERPRETABLE_FEATURES,
     )
     with col3:
         st.write("## Similar client profiles in database")
